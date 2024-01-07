@@ -3,8 +3,8 @@ var buttonEls=document.querySelectorAll("button");
 buttonEls.forEach(function(buttonEl) {
 buttonEl.addEventListener("click",function(){
 
-    var innerHtml=this.innerHTML;
-    switch (innerHtml) {
+    var innerHtmlEl=this.innerHTML;
+    switch (innerHtmlEl) {
         case "w":
             var audio = new Audio(`sounds/tom-1.mp3`);
             audio.play();
@@ -36,7 +36,7 @@ buttonEl.addEventListener("click",function(){
             audio.play();
             break;
     }
-    
+    buttonAnimation(innerHtmlEl);
 }); 
 });
 
@@ -77,8 +77,19 @@ document.addEventListener("keydown",function(event){
             audio.play();
             break;
     }
+    buttonAnimation(keyPressed)
     
 }); 
 
 
 
+function buttonAnimation(currKey){
+    var x=document.querySelector("."+currKey);
+    x.classList.add("pressed")
+
+    setTimeout(() => {
+        x.classList.remove("pressed");
+    }, 100);
+
+
+}
